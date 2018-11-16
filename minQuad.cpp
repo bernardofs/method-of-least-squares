@@ -39,7 +39,6 @@ double getSum(vector<double> &xd, int factor, vector<double> yd, int fy) {
   for(int i = 0; i < n; i++) {
     double x = xd[i], y = pow(yd[i], fy);
     sum += pow(x,factor)*y;
-    debug(sum);
   }
 
   return sum;
@@ -136,8 +135,6 @@ vector<vector<double> > inverse2(vector<vector<double> > &mat) {
     }
   }  
 
-  cerr << endl;
-  cerr << endl;
   return mat;  
   
 }
@@ -154,11 +151,17 @@ signed main () {
   int n, m, degree;
   cout << fixed << setprecision(10);
 
-  ifstream ip("FB2L.csv");
+  ifstream ip;
+  while(!ip.is_open()) {
 
-  if(!ip.is_open()) {
-    cout << "ERROR: File Open" << '\n';
-    return 0;
+    cout << "Type the name of the file" << endl;
+    string file;
+    cin >> file;
+    ip.open(file);
+
+    if(!ip.is_open()) {
+      cout << "ERROR: File Open" << '\n' << endl;
+    }
   }
 
   string date;
