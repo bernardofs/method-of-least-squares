@@ -2,6 +2,7 @@
 
 \usetheme[progressbar=frametitle]{metropolis}
 \usepackage{appendixnumberbeamer}
+\usepackage{graphicx}
 
 \usepackage{booktabs}
 \usepackage[scale=2]{ccicons}
@@ -11,6 +12,8 @@
 
 \usepackage[utf8]{inputenc}
 \usepackage[T1]{fontenc}
+\usepackage{tikz}
+\usetikzlibrary{matrix}
 
 % \usepackage{blindtext}
 % \usepackage{enumitem}
@@ -19,7 +22,7 @@
 \usepackage{xspace}
 \newcommand{\themename}{\textbf{\textsc{metropolis}}\xspace}
 
-\title{Análise de tendências em ações financeiras}
+\title{Análise de tendências de resultados em ações financeiras}
 % \subtitle{A modern beamer theme}
 \date{\today}
 \date{}
@@ -43,7 +46,7 @@
   \begin{itemize}
   \item Ajuda na análise de dados para possíveis investidores
   \newline
-  \item COLOCAR ALGO
+  \item Análise do contexto histórico de valor de determinadas ações
   \newline
   \item Estudo do Método dos Mínimos Quadrados 
   \newline
@@ -63,10 +66,10 @@
 \end{frame}
 
 \section{Método dos Mínimos Quadrados}
-\begin{frame}[fragile]{Algoritmo}
+\begin{frame}[fragile]{Algoritmo para ajuste polinomial}
   \begin{itemize}
-  \item Para uma equação com grau m a equação resultante será da forma \newline {\center $f(x) = \beta_0 + \beta_1x^{1} + \beta_2x^{2} \dots + \beta_mx^{m}$}
-  \newline
+  \item Para uma equação com grau m a equação resultante será da forma  \begin{center}$f(x) = \beta_0 + \beta_1x^{1} + \beta_2x^{2} + \dots + \beta_mx^{m}$\newline\end{center}
+  
   \item Para o ajuste polinomial de curvas, o sistema fica
 igual a   
   \newline
@@ -91,45 +94,13 @@ igual a
       \vdots \\
       \sum{y_{i}x_{i}^{m}} \\
     \end{bmatrix}
-    \]
+  \]
   \newline
   \end{itemize}
 \end{frame}
 
-\begin{frame}[fragile]{Algoritmo}
-  \begin{itemize}
-  \item Para uma equação com grau m a equação resultante será da forma \newline {\center $f(x) = \beta_0 + \beta_1x^{1} + \beta_2x^{2} \dots + \beta_mx^{m}$}
-  \newline
-  \item Para o ajuste polinomial de curvas, o sistema fica
-igual a   
-  \newline
-  \[
-    \begin{bmatrix}
-      \sum{x_{i}^{0}} & \sum{x_{i}^{1}} & \sum{x_{i}^{2}} & \dots  & \sum{x_{i}^{m}} \\
-      \sum{x_{i}^{1}} & \sum{x_{i}^{2}} & \sum{x_{i}^{3}} & \dots & \sum{x_{i}^{m+1}}\\
-      \vdots & \vdots & \vdots & \ddots & \vdots \\
-      \sum{x_{i}^{m}} & \sum{x_{i}^{m+1}} & \sum{x_{i}^{m+2}} & \dots  & \sum{x_{i}^{2m}} \\
-    \end{bmatrix}
-    .
-    \begin{bmatrix}
-      \beta_0 \\
-      \beta_1 \\
-      \vdots  \\
-      \beta_m \\
-    \end{bmatrix}
-    =
-    \begin{bmatrix}
-      \sum{y_{i}} \\
-      \sum{y_{i}x_{i}}\\
-      \vdots \\
-      \sum{y_{i}x_{i}^{m}} \\
-    \end{bmatrix}
-    \]
-  \newline
-  \end{itemize}
-\end{frame}
 
-\begin{frame}[fragile]{Algoritmo}
+\begin{frame}[fragile]{Algoritmo para ajuste polinomial}
   
   Por propriedade de matrizes na Álgebra 
 
@@ -137,279 +108,273 @@ igual a
   {\centering
     $A * X = B$\par
     $A^{-1} * A * X = A^{-1} * B$\par
+    Por propriedade: $A^{-1} * A = I$\par
+    $I * X = A^{-1} * B$\par
+    Por propriedade: $I * X = X$\par
     $X = A^{-1} * B$\par
   }
+  Portanto
+  \[
+    \begin{bmatrix}
+      \beta_0 \\
+      \beta_1 \\
+      \vdots  \\
+      \beta_m \\
+    \end{bmatrix}
+    =
+    \begin{bmatrix}
+      \sum{x_{i}^{0}} & \sum{x_{i}^{1}} & \sum{x_{i}^{2}} & \dots  & \sum{x_{i}^{m}} \\
+      \sum{x_{i}^{1}} & \sum{x_{i}^{2}} & \sum{x_{i}^{3}} & \dots & \sum{x_{i}^{m+1}}\\
+      \vdots & \vdots & \vdots & \ddots & \vdots \\
+      \sum{x_{i}^{m}} & \sum{x_{i}^{m+1}} & \sum{x_{i}^{m+2}} & \dots  & \sum{x_{i}^{2m}} \\
+    \end{bmatrix}^{-1}
+    .
+    \begin{bmatrix}
+      \sum{y_{i}} \\
+      \sum{y_{i}x_{i}}\\
+      \vdots \\
+      \sum{y_{i}x_{i}^{m}} \\
+    \end{bmatrix}
+  \]
 
 \end{frame}
 
-{
-    \metroset{titleformat frame=smallcaps}
-\begin{frame}{Small caps}
-	This frame uses the \texttt{smallcaps} titleformat.
+\begin{frame}[fragile]{Algoritmo para ajuste polinomial}
+  
+  Para esse trabalho foi implementado o ajuste polinomial para equações de primeiro e segundo grau
 
-	\begin{alertblock}{Potential Problems}
-		Be aware, that not every font supports small caps. If for example you typeset your presentation with pdfTeX and the Computer Modern Sans Serif font, every text in smallcaps will be typeset with the Computer Modern Serif font instead.
-	\end{alertblock}
-\end{frame}
-}
+  Tendo os dados do gráfico deve-se então calcular a inversa da matriz A e a multiplicar pela matriz B para achar os coeficientes da função
 
-{
-\metroset{titleformat frame=allsmallcaps}
-\begin{frame}{All small caps}
-	This frame uses the \texttt{allsmallcaps} titleformat.
+  Foram utilizadas técnicas distintas para cálculo da matriz inversa para o ajuste para polinômios de grau um e dois  
 
-	\begin{alertblock}{Potential problems}
-		As this titleformat also uses smallcaps you face the same problems as with the \texttt{smallcaps} titleformat. Additionally this format can cause some other problems. Please refer to the documentation if you consider using it.
-
-		As a rule of thumb: Just use it for plaintext-only titles.
-	\end{alertblock}
-\end{frame}
-}
-
-{
-\metroset{titleformat frame=allcaps}
-\begin{frame}{All caps}
-	This frame uses the \texttt{allcaps} titleformat.
-
-	\begin{alertblock}{Potential Problems}
-		This titleformat is not as problematic as the \texttt{allsmallcaps} format, but basically suffers from the same deficiencies. So please have a look at the documentation if you want to use it.
-	\end{alertblock}
-\end{frame}
-}
-
-\section{Elements}
-
-\begin{frame}[fragile]{Typography}
-      \begin{verbatim}The theme provides sensible defaults to
-\emph{emphasize} text, \alert{accent} parts
-or show \textbf{bold} results.\end{verbatim}
-
-  \begin{center}becomes\end{center}
-
-  The theme provides sensible defaults to \emph{emphasize} text,
-  \alert{accent} parts or show \textbf{bold} results.
-\end{frame}
-
-\begin{frame}{Font feature test}
+  Portanto para achar a matriz de coeficientes deve-se aplicar duas operações:
   \begin{itemize}
-    \item Regular
-    \item \textit{Italic}
-    \item \textsc{SmallCaps}
-    \item \textbf{Bold}
-    \item \textbf{\textit{Bold Italic}}
-    \item \textbf{\textsc{Bold SmallCaps}}
-    \item \texttt{Monospace}
-    \item \texttt{\textit{Monospace Italic}}
-    \item \texttt{\textbf{Monospace Bold}}
-    \item \texttt{\textbf{\textit{Monospace Bold Italic}}}
+    \item Achar o inverso de uma matriz
+    \item Fazer multiplicações de matrizes
   \end{itemize}
-\end{frame}
 
-\begin{frame}{Lists}
-  \begin{columns}[T,onlytextwidth]
-    \column{0.33\textwidth}
-      Items
-      \begin{itemize}
-        \item Milk \item Eggs \item Potatos
-      \end{itemize}
-
-    \column{0.33\textwidth}
-      Enumerations
-      \begin{enumerate}
-        \item First, \item Second and \item Last.
-      \end{enumerate}
-
-    \column{0.33\textwidth}
-      Descriptions
-      \begin{description}
-        \item[PowerPoint] Meeh. \item[Beamer] Yeeeha.
-      \end{description}
-  \end{columns}
-\end{frame}
-\begin{frame}{Animation}
-  \begin{itemize}[<+- | alert@+>]
-    \item \alert<4>{This is\only<4>{ really} important}
-    \item Now this
-    \item And now this
-  \end{itemize}
-\end{frame}
-\begin{frame}{Figures}
-  \begin{figure}
-    \newcounter{density}
-    \setcounter{density}{20}
-    \begin{tikzpicture}
-      \def\couleur{alerted text.fg}
-      \path[coordinate] (0,0)  coordinate(A)
-                  ++( 90:5cm) coordinate(B)
-                  ++(0:5cm) coordinate(C)
-                  ++(-90:5cm) coordinate(D);
-      \draw[fill=\couleur!\thedensity] (A) -- (B) -- (C) --(D) -- cycle;
-      \foreach \x in {1,...,40}{%
-          \pgfmathsetcounter{density}{\thedensity+20}
-          \setcounter{density}{\thedensity}
-          \path[coordinate] coordinate(X) at (A){};
-          \path[coordinate] (A) -- (B) coordinate[pos=.10](A)
-                              -- (C) coordinate[pos=.10](B)
-                              -- (D) coordinate[pos=.10](C)
-                              -- (X) coordinate[pos=.10](D);
-          \draw[fill=\couleur!\thedensity] (A)--(B)--(C)-- (D) -- cycle;
-      }
-    \end{tikzpicture}
-    \caption{Rotated square from
-    \href{http://www.texample.net/tikz/examples/rotated-polygons/}{texample.net}.}
-  \end{figure}
-\end{frame}
-\begin{frame}{Tables}
-  \begin{table}
-    \caption{Largest cities in the world (source: Wikipedia)}
-    \begin{tabular}{lr}
-      \toprule
-      City & Population\\
-      \midrule
-      Mexico City & 20,116,842\\
-      Shanghai & 19,210,000\\
-      Peking & 15,796,450\\
-      Istanbul & 14,160,467\\
-      \bottomrule
-    \end{tabular}
-  \end{table}
-\end{frame}
-\begin{frame}{Blocks}
-  Three different block environments are pre-defined and may be styled with an
-  optional background color.
-
-  \begin{columns}[T,onlytextwidth]
-    \column{0.5\textwidth}
-      \begin{block}{Default}
-        Block content.
-      \end{block}
-
-      \begin{alertblock}{Alert}
-        Block content.
-      \end{alertblock}
-
-      \begin{exampleblock}{Example}
-        Block content.
-      \end{exampleblock}
-
-    \column{0.5\textwidth}
-
-      \metroset{block=fill}
-
-      \begin{block}{Default}
-        Block content.
-      \end{block}
-
-      \begin{alertblock}{Alert}
-        Block content.
-      \end{alertblock}
-
-      \begin{exampleblock}{Example}
-        Block content.
-      \end{exampleblock}
-
-  \end{columns}
-\end{frame}
-\begin{frame}{Math}
-  \begin{equation*}
-    e = \lim_{n\to \infty} \left(1 + \frac{1}{n}\right)^n
-  \end{equation*}
-\end{frame}
-\begin{frame}{Line plots}
-  \begin{figure}
-    \begin{tikzpicture}
-      \begin{axis}[
-        mlineplot,
-        width=0.9\textwidth,
-        height=6cm,
-      ]
-
-        \addplot {sin(deg(x))};
-        \addplot+[samples=100] {sin(deg(2*x))};
-
-      \end{axis}
-    \end{tikzpicture}
-  \end{figure}
-\end{frame}
-\begin{frame}{Bar charts}
-  \begin{figure}
-    \begin{tikzpicture}
-      \begin{axis}[
-        mbarplot,
-        xlabel={Foo},
-        ylabel={Bar},
-        width=0.9\textwidth,
-        height=6cm,
-      ]
-
-      \addplot plot coordinates {(1, 20) (2, 25) (3, 22.4) (4, 12.4)};
-      \addplot plot coordinates {(1, 18) (2, 24) (3, 23.5) (4, 13.2)};
-      \addplot plot coordinates {(1, 10) (2, 19) (3, 25) (4, 15.2)};
-
-      \legend{lorem, ipsum, dolor}
-
-      \end{axis}
-    \end{tikzpicture}
-  \end{figure}
-\end{frame}
-\begin{frame}{Quotes}
-  \begin{quote}
-    Veni, Vidi, Vici
-  \end{quote}
-\end{frame}
-
-{%
-\setbeamertemplate{frame footer}{My custom footer}
-\begin{frame}[fragile]{Frame footer}
-    \themename defines a custom beamer template to add a text to the footer. It can be set via
-    \begin{verbatim}\setbeamertemplate{frame footer}{My custom footer}\end{verbatim}
-\end{frame}
-}
-
-\begin{frame}{References}
-  Some references to showcase [allowframebreaks] \cite{knuth92,ConcreteMath,Simpson,Er01,greenwade93}
-\end{frame}
-
-\section{Conclusion}
-
-\begin{frame}{Summary}
-
-  Get the source of this theme and the demo presentation from
-
-  \begin{center}\url{github.com/matze/mtheme}\end{center}
-
-  The theme \emph{itself} is licensed under a
-  \href{http://creativecommons.org/licenses/by-sa/4.0/}{Creative Commons
-  Attribution-ShareAlike 4.0 International License}.
-
-  \begin{center}\ccbysa\end{center}
 
 \end{frame}
 
-{\setbeamercolor{palette primary}{fg=black, bg=yellow}
-\begin{frame}[standout]
-  Questions?
+
+\begin{frame}[fragile]{Matriz inversa para ajuste de polinômio com grau um}
+  
+  Matriz da forma:                                   
+  $\begin{bmatrix}
+    \sum{x_{i}^{0}} & \sum{x_{i}^{1}} \\
+    \sum{x_{i}^{1}} & \sum{x_{i}^{2}} \\
+  \end{bmatrix} \newline $
+  
+
+
+  Para matrizes 2x2 a inversa pode ser calculada por
+  \[
+  \begin{bmatrix}
+    {a} & {b} \\
+    {c} & {d} \\
+  \end{bmatrix}^{-1}
+  = 
+  \dfrac{1}{ad-bc}
+  \begin{bmatrix}
+    {d} & {-b} \\
+    {-c} & {a} \\
+  \end{bmatrix}
+  \]
+
+  No qual $ad-bc$ pode também ser representado como o determinante da matriz inicial
+
 \end{frame}
-}
 
-\appendix
+\begin{frame}[fragile]{Matriz inversa para ajuste de polinômio com grau dois}
+  
+  Matriz da forma: 
+  \[
+  \begin{bmatrix}
+    \sum{x_{i}^{0}} & \sum{x_{i}^{1}} & \sum{x_{i}^{2}} \\
+    \sum{x_{i}^{1}} & \sum{x_{i}^{2}} & \sum{x_{i}^{3}} \\
+    \sum{x_{i}^{2}} & \sum{x_{i}^{3}} & \sum{x_{i}^{4}}
+  \end{bmatrix}
+  \newline
+  \newline
+  \newline
+  \newline\]
 
-\begin{frame}[fragile]{Backup slides}
-  Sometimes, it is useful to add slides at the end of your presentation to
-  refer to during audience questions.
 
-  The best way to do this is to include the \verb|appendixnumberbeamer|
-  package in your preamble and call \verb|\appendix| before your backup slides.
 
-  \themename will automatically turn off slide numbering and progress bars for
-  slides in the appendix.
+  
+
+  A seguir serão mostrados os passos para o cálculo da inversa de uma matriz 3x3
+
 \end{frame}
 
-\begin{frame}[allowframebreaks]{References}
-
-  \bibliography{demo}
-  \bibliographystyle{abbrv}
+\begin{frame}[fragile]{Passos para o cálculo da inversa da matriz 3x3}
+  
+  Para uma matriz $A_{3x3}$:
+  \begin{enumerate}
+  \item Calcular o determinante da matriz A
+  \begin{center}
+    \includegraphics[scale=0.15]{images/determinante.png}
+  \end{center}
+  \item Calcular a matriz de cofatores \newline
+  Para uma posição (i, j):
+    \begin{enumerate}
+      \item Deve-se deletar os números presentes na mesma linha i e coluna j da matriz original e calcular a determinante dessa nova matriz 2x2
+      \item Se i + j for múltiplo de dois o valor resultante é o próprio valor da determinante, caso contrário é o valor oposto da determinante
+    \end{enumerate}
+  Exemplo: 
+    \[
+    A = \begin{bmatrix}
+      1 & 2 & 3 \\
+      0 & 4 & 5 \\
+      1 & 0 & 6
+    \end{bmatrix}, 
+    cfA_{11} = \begin{vmatrix}
+      4 & 5 \\ 
+      0 & 6 \notag
+    \end{vmatrix}, 
+    cfA_{12} = -\begin{vmatrix}
+      0 & 5 \\ 
+      1 & 6 \notag
+    \end{vmatrix}
+    =
+    5    
+    \]
+  \end{enumerate}
 
 \end{frame}
+
+\begin{frame}[fragile]{Passos para o cálculo da inversa da matriz 3x3}
+  \[
+    cfA = \begin{bmatrix}
+          24      &     5       & cfA_{13} \\
+      cfA_{21} & cfA_{22} & cfA_{23} \\
+      cfA_{31} & cfA_{32} & cfA_{33}
+    \end{bmatrix}
+  \]
+
+  \begin{enumerate}
+    \setcounter{enumi}{2}
+    \item Transpor matriz de cofatores
+    \[
+      cfA = \begin{bmatrix}
+        cfA_{11} & cfA_{12} & cfA_{13} \\
+        cfA_{21} & cfA_{22} & cfA_{23} \\
+        cfA_{31} & cfA_{32} & cfA_{33}
+      \end{bmatrix},  
+      \: tcfA = \begin{bmatrix}
+        cfA_{11} & cfA_{21} & cfA_{31} \\
+        cfA_{12} & cfA_{22} & cfA_{32} \\
+        cfA_{13} & cfA_{23} & cfA_{33}
+      \end{bmatrix}  
+    \]
+    \item Multiplicar toda os elementos da matriz transposta por $det(A)^{-1}$
+    \[  
+      inverse = \begin{bmatrix}
+        tcfA_{11}*det(A)^{-1} & tcfA_{12}*det(A)^{-1} & tcfA_{13}*det(A)^{-1} \\
+        tcfA_{21}*det(A)^{-1} & tcfA_{22}*det(A)^{-1} & tcfA_{23}*det(A)^{-1} \\
+        tcfA_{31}*det(A)^{-1} & tcfA_{32}*det(A)^{-1} & tcfA_{33}*det(A)^{-1}
+      \end{bmatrix}  
+    \]
+  \end{enumerate}
+
+\end{frame}
+
+\begin{frame}[fragile]{Multiplicação de Matrizes}
+
+  O produto de matrizes A e B resultando na matriz C é obtido por meio da soma dos produtos dos elementos correspondentes da i-ésima linha de A pelos elementos da j-ésima coluna B.
+  
+  \[
+  \begin{tikzpicture}
+     \matrix (mat) [%
+       matrix of nodes,
+       left delimiter={[},right delimiter={]}
+     ]
+      {%
+        $A_{1,1}$ & $A_{1,2}$ & $A_{1,3}$\\
+        $A_{2,1}$ & $A_{2,2}$ & $A_{2,3}$\\
+        $A_{3,1}$ & $A_{3,2}$ & $A_{3,3}$\\
+        \\
+      };
+    % do the strike out thing
+      % \draw[black] (mat-1-1.west)  -- (mat-1-3.east);
+      \draw[black] (mat-1-1.north) -- (mat-3-1.south);
+  \end{tikzpicture}
+  \begin{tikzpicture}
+
+     \matrix (mat) [%
+       matrix of nodes,
+       left delimiter={[},right delimiter={]}
+     ]
+      {%
+        $B_{1,1}$ & $B_{1,2}$ & $B_{1,3}$\\
+        $B_{2,1}$ & $B_{2,2}$ & $B_{2,3}$\\
+        $B_{3,1}$ & $B_{3,2}$ & $B_{3,3}$\\
+        \\
+      };
+    % do the strike out thing
+      \draw[black] (mat-1-1.west)  -- (mat-1-3.east);
+      % \draw[black] (mat-1-1.north) -- (mat-3-1.south);
+  \end{tikzpicture}
+  \]
+  \[
+  =
+  \]
+  \[
+  \begin{tikzpicture}
+    \matrix (mat) [%
+      matrix of nodes,
+      left delimiter={[},right delimiter={]}
+    ]
+    {%
+      $A_{1,1}*B_{1,1} + A_{2,1}*B_{1,2} + A_{3,1}*B_{1,3}$ & $\dots$ & $\dots$\\
+      $\dots$ & $\dots$ & $\dots$\\
+      $\dots$ & $\dots$ & $\dots$\\
+      \\
+    };
+  \end{tikzpicture}
+
+  \]
+
+\end{frame}
+
+\begin{frame}{Algoritmo para ajuste polinomial}
+
+  Agora sabendo como fazer o calculo da matriz inversa e multiplicação de matrizes é só calcular a matriz $\beta$ de acordo com os dados obtidos
+  \[
+    \begin{bmatrix}
+      \beta_0 \\
+      \beta_1 \\
+      \vdots  \\
+      \beta_m \\
+    \end{bmatrix}
+    =
+    \begin{bmatrix}
+      \sum{x_{i}^{0}} & \sum{x_{i}^{1}} & \sum{x_{i}^{2}} & \dots  & \sum{x_{i}^{m}} \\
+      \sum{x_{i}^{1}} & \sum{x_{i}^{2}} & \sum{x_{i}^{3}} & \dots & \sum{x_{i}^{m+1}}\\
+      \vdots & \vdots & \vdots & \ddots & \vdots \\
+      \sum{x_{i}^{m}} & \sum{x_{i}^{m+1}} & \sum{x_{i}^{m+2}} & \dots  & \sum{x_{i}^{2m}} \\
+    \end{bmatrix}^{-1}
+    .
+    \begin{bmatrix}
+      \sum{y_{i}} \\
+      \sum{y_{i}x_{i}}\\
+      \vdots \\
+      \sum{y_{i}x_{i}^{m}} \\
+    \end{bmatrix}
+  \]
+\end{frame}
+
+\section{Desenvolvimento do Trabalho}
+
+\begin{frame}{Obtenção dos dados}
+
+  Para esse trabalho foi utilizado dados da empresa Facebook, Inc. (ação FB) durante o período de 12/05/2013 até 12/11/2018
+  \begin{center}
+    \includegraphics[scale=0.10]{images/facebook.png}
+  \end{center}
+  Os dados podem ser baixados através do site Yahoo finanças \newline
+  Link: \url{https://finance.yahoo.com/quote/FB?p=FB}
+\end{frame}
+
 
 \end{document}
