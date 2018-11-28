@@ -23,32 +23,27 @@
 \newcommand{\themename}{\textbf{\textsc{metropolis}}\xspace}
 
 %% centralize
-\newcommand{\vcenteredinclude}[1]{\begingroup
-\setbox0=\hbox{\includegraphics{#1}}%
-\parbox{\wd0}{\box0}\endgroup}
 
-%% better: (general command to vertically center horizontal material)
-\newcommand*{\vcenteredhbox}[1]{\begingroup
-\setbox0=\hbox{#1}\parbox{\wd0}{\box0}\endgroup}
+% \newcommand{\vcenteredinclude}[1]{\begingroup
+% \setbox0=\hbox{\includegraphics{#1}}%
+% \parbox{\wd0}{\box0}\endgroup}
+
+% %% better: (general command to vertically center horizontal material)
+% \newcommand*{\vcenteredhbox}[1]{\begingroup
+% \setbox0=\hbox{#1}\parbox{\wd0}{\box0}\endgroup}
 
 %% centralize
 
 \title{Análise de tendências de resultados em ações financeiras}
-% \subtitle{A modern beamer theme}
 \date{\today}
 \date{}
 \author{Bernardo Flores Salmeron}
 \institute{Universidade Federal da Bahia}
-% \titlegraphic{\hfill\includegraphics[height=1.5cm]{logo.pdf}}
 
 \begin{document}
 
 \maketitle
 
-% \begin{frame}{Table of contents}
-%   \setbeamertemplate{section in toc}[sections numbered]
-%   \tableofcontents[hideallsubsections]
-% \end{frame}
 
 \section{Introdução}
 
@@ -116,14 +111,14 @@ igual a
   Por propriedade de matrizes na Álgebra 
 
   % \newline
-  {\centering
-    $A * X = B$\par
-    $A^{-1} * A * X = A^{-1} * B$\par
-    Por propriedade: $A^{-1} * A = I$\par
-    $I * X = A^{-1} * B$\par
-    Por propriedade: $I * X = X$\par
-    $X = A^{-1} * B$\par
-  }
+  % {\centering
+  %   $A * X = B$\par
+  %   $A^{-1} * A * X = A^{-1} * B$\par
+  %   Por propriedade: $A^{-1} * A = I$\par
+  %   $I * X = A^{-1} * B$\par
+  %   Por propriedade: $I * X = X$\par
+  %   $X = A^{-1} * B$\par
+  % }
 
 \end{frame}
 
@@ -252,11 +247,11 @@ igual a
   
   Para uma matriz $A_{3x3}$:
   \begin{enumerate}
-  \item Calcular o determinante da matriz A ($det(A))$
+  \item Calcular o determinante da matriz A ($det(A)$)
   
-  \begin{center}
-     \includegraphics[scale=0.15]{images/determinante.png}  
-  \end{center}
+  % \begin{center}
+  %    \includegraphics[scale=0.15]{images/determinante.png}  
+  % \end{center}
   
   \item Calcular a matriz de cofatores \newline
   Para uma posição (i, j):
