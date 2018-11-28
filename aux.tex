@@ -364,11 +364,27 @@ igual a
   \]
 \end{frame}
 
-\section{Desenvolvimento do Trabalho}
+\begin{frame}{Qualidade de ajuste}
+
+    A qualidade de uma função ajustada u e pontos reais já obtidos representados por y é dada por
+    \begin{center}
+        $q = \sum_{i=1}^{N} (y_{i}-u_{i})$
+    \end{center}
+    em que $N$, consiste no número de pontos
+    
+    Observe que quanto menor for o valor $q$ mais precisa é a função
+\end{frame}
+
+\section{ljfdslaj do Trabalho}
 
 \begin{frame}{Obtenção dos dados}
 
-  Para esse trabalho foi utilizado dados da empresa Facebook, Inc. (ação FB) durante o período de 12/05/2013 até 12/11/2018
+  Para esse trabalho foi utilizado dados da empresa Facebook, Inc. (ação FB) durante o período de 
+  \begin{itemize}
+    \item 13/05/2013 até 24/09/2018
+    \item 02/04/2018 até 09/11/2018
+  \end{itemize}
+  
   \begin{center}
     \includegraphics[scale=0.10]{images/facebook.png}
   \end{center}
@@ -376,5 +392,106 @@ igual a
   Link: \url{https://finance.yahoo.com/quote/FB?p=FB}
 \end{frame}
 
+\begin{frame}{Aplicação do Algoritmo}
+
+  Após a obtenção dos dados da ação FB os seguintes procedimentos foram feitos para cada período:
+  \begin{itemize}
+      \item Ajustes linear e quadrático 
+      \item Plotagem de gráfico para cada ajuste 
+      \item Análise de qualidade de cada ajuste 
+      \item Comparativo de diferentes ajustes para um mesmo período 
+  \end{itemize}
+\end{frame}
+
+\begin{frame}{Período de 13/05/2013 até 24/09/2018}
+
+  Dados reais do Período
+  
+  Incluir imagem
+\end{frame}
+
+\begin{frame}{Período de 13/05/2013 até 24/09/2018 - Ajuste Linear}
+
+  Equação da reta após ajuste para uma equação linear:
+  \begin{center}
+  $u = f(x) = 0.545256449x + 32.3944553676$
+  
+  $q = \sum_{i=1}^{N} (y_{i}-u_{i}) = 35464.9446729667$
+  \end{center}
+  
+  \begin{center}
+    \includegraphics[scale=0.48 ]{"FBOK LARGE (real e linear)".jpg}
+  \end{center}
+\end{frame}
+
+\begin{frame}{Período de 13/05/2013 até 24/09/2018 - Ajuste Quadrático}
+
+  Equação da reta após ajuste para uma equação quadrático:
+  \begin{center}
+  $u = f(x) = -0.0000545252x^2 + 0.5609597066x + 31.6433162106$
+  
+  $q = \sum_{i=1}^{N} (y_{i}-u_{i}) = 35499.0004518346$
+  \end{center}
+  
+  \begin{center}
+    \includegraphics[scale=0.45]{"FBOK LARGE (real e quadratico)".jpg}
+  \end{center}
+\end{frame}
+
+\begin{frame}{Período de 13/05/2013 até 24/09/2018 - Comparativo}
+
+  Comparativo entre dados reais, ajuste linear e ajuste quadrático:
+  
+  CONSERTAR!!!!!!!!
+  \begin{center}
+    \includegraphics[scale=0.45]{"FBOK LARGE (real, linear e quadratico)".jpg}
+  \end{center}
+\end{frame}
+
+\begin{frame}{Período de 02/04/2018 até 09/11/2018}
+
+  Dados reais do Período
+  
+  Incluir imagem
+\end{frame}
+
+
+\begin{frame}{Período de 02/04/2018 até 09/11/2018 - Ajuste Linear}
+
+  Equação da reta após ajuste para uma equação linear:
+  \begin{center}
+  $u = f(x) = -0.1849197185x + 189.5355026317$
+  
+  $q = \sum_{i=1}^{N} (y_{i}-u_{i}) = 41251.7195782369$
+  \end{center}
+  
+  \begin{center}
+    \includegraphics[scale=0.45]{"FBOK (real e linear)".jpg}
+  \end{center}
+\end{frame}
+
+\begin{frame}{Período de 02/04/2018 até 09/11/2018 - Ajuste Quadrático}
+
+  Equação da reta após ajuste para uma equação quadrática:
+  \begin{center}
+  $u = f(x) = -0.0069320225x^2 + 0.9242038877x + 160.1437270675$
+  
+  $q = \sum_{i=1}^{N} (y_{i}-u_{i}) = 12439.3368638241$
+  \end{center}
+  
+  \begin{center}
+    \includegraphics[scale=0.45]{"FBOK (real e quadratico)".jpg}
+  \end{center}
+\end{frame}
+
+
+\begin{frame}{Período de 02/04/2018 até 09/11/2018 - Comparativo}
+
+  Comparativo entre dados reais, ajuste linear e ajuste quadrático:
+  
+  \begin{center}
+    \includegraphics[scale=0.45]{"FBOK (real, linear e quadratico)".jpg}
+  \end{center}
+\end{frame}
 
 \end{document}
