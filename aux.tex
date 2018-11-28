@@ -22,6 +22,17 @@
 \usepackage{xspace}
 \newcommand{\themename}{\textbf{\textsc{metropolis}}\xspace}
 
+%% centralize
+\newcommand{\vcenteredinclude}[1]{\begingroup
+\setbox0=\hbox{\includegraphics{#1}}%
+\parbox{\wd0}{\box0}\endgroup}
+
+%% better: (general command to vertically center horizontal material)
+\newcommand*{\vcenteredhbox}[1]{\begingroup
+\setbox0=\hbox{#1}\parbox{\wd0}{\box0}\endgroup}
+
+%% centralize
+
 \title{Análise de tendências de resultados em ações financeiras}
 % \subtitle{A modern beamer theme}
 \date{\today}
@@ -113,8 +124,38 @@ igual a
     Por propriedade: $I * X = X$\par
     $X = A^{-1} * B$\par
   }
-  Portanto
+
+\end{frame}
+
+\begin{frame}[fragile]{Algoritmo para ajuste polinomial}
+  
+  Portanto, como $X = A^{-1} * B$
   \[
+    \begin{bmatrix}
+      \sum{x_{i}^{0}} & \sum{x_{i}^{1}} & \sum{x_{i}^{2}} & \dots  & \sum{x_{i}^{m}} \\
+      \sum{x_{i}^{1}} & \sum{x_{i}^{2}} & \sum{x_{i}^{3}} & \dots & \sum{x_{i}^{m+1}}\\
+      \vdots & \vdots & \vdots & \ddots & \vdots \\
+      \sum{x_{i}^{m}} & \sum{x_{i}^{m+1}} & \sum{x_{i}^{m+2}} & \dots  & \sum{x_{i}^{2m}} \\
+    \end{bmatrix}
+    .
+    \begin{bmatrix}
+      \beta_0 \\
+      \beta_1 \\
+      \vdots  \\
+      \beta_m \\
+    \end{bmatrix}
+    =
+    \begin{bmatrix}
+      \sum{y_{i}} \\
+      \sum{y_{i}x_{i}}\\
+      \vdots \\
+      \sum{y_{i}x_{i}^{m}} \\
+    \end{bmatrix}
+    \implies
+  \]
+
+  \[
+    \implies
     \begin{bmatrix}
       \beta_0 \\
       \beta_1 \\
@@ -211,10 +252,12 @@ igual a
   
   Para uma matriz $A_{3x3}$:
   \begin{enumerate}
-  \item Calcular o determinante da matriz A
+  \item Calcular o determinante da matriz A ($det(A))$
+  
   \begin{center}
-    \includegraphics[scale=0.15]{images/determinante.png}
+     \includegraphics[scale=0.15]{images/determinante.png}  
   \end{center}
+  
   \item Calcular a matriz de cofatores \newline
   Para uma posição (i, j):
     \begin{enumerate}
@@ -375,7 +418,7 @@ igual a
     Observe que quanto menor for o valor $q$ mais precisa é a função
 \end{frame}
 
-\section{ljfdslaj do Trabalho}
+\section{Análise de Ação}
 
 \begin{frame}{Obtenção dos dados}
 
@@ -443,7 +486,7 @@ igual a
   Comparativo entre dados reais, ajuste linear e ajuste quadrático
   
   \begin{center}
-    \includegraphics[scale=0.45]{"images/fbl-both".png}
+    \includegraphics[scale=0.6]{"images/fbl-both".png}
   \end{center}
 \end{frame}
 
@@ -491,7 +534,7 @@ igual a
   Comparativo entre dados reais, ajuste linear e ajuste quadrático
   
   \begin{center}
-    \includegraphics[scale=0.45]{"images/fbboth".png}
+    \includegraphics[scale=0.6]{"images/fbboth".png}
   \end{center}
 \end{frame}
 
