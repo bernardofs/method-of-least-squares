@@ -124,7 +124,7 @@ igual a
 
 \begin{frame}[fragile]{Algoritmo para ajuste polinomial}
   
-  Portanto, como $X = A^{-1} * B$
+  Portanto, como $A * X = B \implies X = A^{-1} * B$
   \[
     \begin{bmatrix}
       \sum{x_{i}^{0}} & \sum{x_{i}^{1}} & \sum{x_{i}^{2}} & \dots  & \sum{x_{i}^{m}} \\
@@ -249,9 +249,9 @@ igual a
   \begin{enumerate}
   \item Calcular o determinante da matriz A ($det(A)$)
   
-  % \begin{center}
-  %    \includegraphics[scale=0.15]{images/determinante.png}  
-  % \end{center}
+   \begin{center}
+      \includegraphics[scale=0.15]{images/determinante.png}  
+   \end{center}
   
   \item Calcular a matriz de cofatores \newline
   Para uma posição (i, j):
@@ -413,11 +413,11 @@ igual a
     Observe que quanto menor for o valor $q$ mais precisa é a função
 \end{frame}
 
-\section{Análise de Ação}
+\section{Análise de Aplicação na Bolsa de Valores}
 
 \begin{frame}{Obtenção dos dados}
 
-  Para esse trabalho foi utilizado dados da empresa Facebook, Inc. (ação FB) durante o período de 
+  Para esse trabalho foi utilizado dados da empresa Facebook, Inc. (aplicação FB) durante o período de 
   \begin{itemize}
     \item 13/05/2013 até 24/09/2018
     \item 02/04/2018 até 09/11/2018
